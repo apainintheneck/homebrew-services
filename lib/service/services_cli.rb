@@ -255,7 +255,7 @@ module Service
         file = enable ? service.dest : service.service_file
         launchctl_load(service, file: file, enable: enable)
       elsif System.systemctl?
-        install_service_file(service, nil) unless service.dest.exist?
+        install_service_file(service, nil) unless service.loaded?
         systemd_load(service, enable: enable)
       end
 
